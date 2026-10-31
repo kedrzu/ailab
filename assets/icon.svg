@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#8b5cf6"/>
+      <stop offset="1" stop-color="#3730a3"/>
+    </linearGradient>
+    <linearGradient id="liquid" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#5eead4"/>
+      <stop offset="1" stop-color="#22d3ee"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="14" fill="url(#bg)"/>
+  <!-- flask outline -->
+  <path d="M25 10h14M27 10v14L14 47a5 5 0 0 0 4.4 7.5h27.2A5 5 0 0 0 50 47L37 24V10"
+        fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- liquid -->
+  <path d="M20.5 37h23L48 45.5a4 4 0 0 1-3.5 6H19.5a4 4 0 0 1-3.5-6Z" fill="url(#liquid)" opacity="0.9"/>
+  <!-- neural net in the liquid -->
+  <g stroke="#1e1b4b" stroke-width="1.6" opacity="0.85">
+    <line x1="24" y1="41" x2="32" y2="44"/>
+    <line x1="24" y1="47" x2="32" y2="44"/>
+    <line x1="32" y1="44" x2="40" y2="41"/>
+    <line x1="32" y1="44" x2="40" y2="47"/>
+    <line x1="24" y1="41" x2="24" y2="47"/>
+    <line x1="40" y1="41" x2="40" y2="47"/>
+  </g>
+  <g fill="#fff" stroke="#1e1b4b" stroke-width="1.2">
+    <circle cx="24" cy="41" r="2.4"/>
+    <circle cx="24" cy="47" r="2.4"/>
+    <circle cx="32" cy="44" r="2.8"/>
+    <circle cx="40" cy="41" r="2.4"/>
+    <circle cx="40" cy="47" r="2.4"/>
+  </g>
+  <!-- bubbles -->
+  <circle cx="30" cy="30" r="1.8" fill="#fff" opacity="0.8"/>
+  <circle cx="34" cy="25" r="1.3" fill="#fff" opacity="0.6"/>
+</svg>
