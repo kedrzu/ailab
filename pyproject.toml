@@ -1,0 +1,28 @@
+[project]
+name = "ailab"
+version = "0.1.0"
+description = "Add your description here"
+authors = [
+    { name = "Michał Kędrzyński", email = "kedrzu@gmail.com" }
+]
+requires-python = ">=3.13"
+dependencies = [
+    "huggingface-hub>=2.4.0",
+    "polars>=2.1.0",
+    "bpe-rs",
+    "plotly>=7.1.0",
+]
+
+[project.scripts]
+ailab = "ailab:main"
+
+[tool.uv.sources]
+bpe-rs = { path = "rust/bpe" }
+
+[tool.uv]
+# Bez tego uv nie zauważy zmian w kodzie Rusta i nie przebuduje modułu.
+cache-keys = [{ file = "pyproject.toml" }, { file = "rust/bpe/Cargo.toml" }, { file = "rust/bpe/src/**/*.rs" }]
+
+[build-system]
+requires = ["uv_build>=0.13.0,<0.14.0"]
+build-backend = "uv_build"
