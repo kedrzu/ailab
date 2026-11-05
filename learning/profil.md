@@ -40,9 +40,12 @@ zakładaj.
 | fertility | 💡 | Sam zaproponował pomiar osobno na treningu i teście. Tokeny na słowo; nie może rosnąć z kolejnymi scaleniami. |
 | podział train/test | 👂 | Omówiony podział po tekstach źródłowych, żeby fragmenty jednej książki nie trafiły do obu zbiorów. |
 | generalizacja tokenizera | 💡 | Na wykresach: słowa niewidziane 3,17 tokenu wobec 1,44 dla widzianych; test nie rośnie, rośnie rozjazd. |
+| aktualizacja przyrostowa (indeks) | 👂 | Algorytm dał ok. 29x, wątki 1,38x. Kod napisał agent. |
 | skalowanie równoległe (Amdahl) | 👂 | Rust 1,38x na 6 wątkach; zliczanie par nie skaluje się. Kod napisał agent, użytkownik ma go przeanalizować. |
 | vocabulary trimming | 👂 | Przycinanie słownika po fakcie (np. mT5 → jeden język); trzeba usunąć też scalenia BPE. |
 | fleksja a tokenizacja | 💡 | Sam wyszedł z pomysłem lematyzacji wejścia dla kompresji; omówione ograniczenia (przypadek niesie znaczenie, autoregresja). |
+| tokeny pośrednie, pruning w BPE | 💡 | Sam wymyślił odejmowanie liczności od rodziców i usuwanie tokenów poniżej 50% (2026-11-05). Omówione teoretycznie: kryterium `L < f_best`, 50% jako warunek konieczny; nie testowane na danych. Pokrewne: Picky BPE. Sam wyłapał, że problemy z encode wynikają z odtwarzania reguł; omówiony encoder DP. Sam odczytał z wykresu mały, systematyczny efekt; potwierdzone na 10 podziałach nkjp1m: test od -0,71% (ok. 5500 tokenów) do -0,20% (30 000), niewidziane przy 30 000 +0,25%. Na 26 źródłach (3 podziały): test od -0,86% (4534) do -0,35% (30 000), niewidziane około zera. Kod napisał agent. |
+| kolejność scaleń przy encode | 👂 | Do 2026-11-05 zakładał, że słownik to lista bez znaczącej kolejności. Wyjaśnione: klasyczny encode zależy od kolejności scaleń; decode i encoder DP nie. |
 | wielkość liter w tokenizacji | 👂 | Sam zapytał o koszt dla słownika i uczenia (ALL CAPS, literówki). Omówione 2026-11-04: V to stały budżet, rzadkie warianty rozpadają się na drobne tokeny; model uczy się podobieństwa wariantów z kontekstu; uncased BERT i tokeny `xxmaj`/`xxup` jako alternatywy. |
 
 ### Architektura
@@ -73,6 +76,8 @@ zakładaj.
 
 - Jak rozmiar słownika wpływa na tokenizację — chcę to zobaczyć w eksperymencie
   porównawczym (kilka rozmiarów obok siebie), a nie dostać jedną „optymalną” wartość.
+
+- Pruning w BPE: dlaczego największy zysk jest przy kilku tysiącach tokenów i dlaczego `plwiki_user_talk` zyskuje najwięcej (-2,09% przy 4534)? Do sprawdzenia: encoder DP.
 
 ## Preferencje nauki
 
