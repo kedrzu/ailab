@@ -6,3 +6,5 @@ data/
 target/
 # Zrzuty ekranu i logi z testów przeglądarkowych.
 .playwright-mcp/
+# Pliki systemowe macOS.
+.DS_Store
